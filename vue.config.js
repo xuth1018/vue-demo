@@ -15,12 +15,12 @@ module.exports = {
     open: true,
     hotOnly: true,
     proxy: { // 配置跨域代理，只有一个代理
-      '/hello': {
+      '/emp/api': {
         target: origin + '/emp',
-        changeOrigin: true,
+        changeOrigin: true, // 跨域
         // ws: true, // websocket支持
-        // secure: false,
-        pathRewrite: {
+        secure: false,
+        pathRewrite: {  // 重写
           '^/emp': ''
         }
 

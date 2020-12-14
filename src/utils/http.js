@@ -3,26 +3,22 @@ import axios from 'axios'
 
 // create axios instance
 const service = axios.create({
-  baseURL: 'http://kjgxyun-ft.cpic.com.cn',
+  // baseURL: 'http://127.0.0.1:8001',
   timeout: 5000,
   headers: {
-    common: {
-    }
+    accesstoken: 'SAFEDEFAULT'
   }
 })
 
 // request interceptor
 service.interceptors.request.use(config => {
-  // process data before send request
-  // add request timeout
-  // config.headers.common['accesstoken'] = 'SAFEDEFAULT'
-  /* if (config.url.indexOf('?') !== -1) {
+  // process data before send request  add request timeout
+  if (config.url.indexOf('?') !== -1) {
     config.url += `&t=${new Date().getTime()}`
   } else {
     config.url += `?t=${new Date().getTime()}`
-  } */
+  }
   config.data = JSON.stringify(config.data)
-  console.log(config)
   return config
 }, error => {
   return Promise.reject(error)

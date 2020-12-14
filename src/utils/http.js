@@ -1,21 +1,26 @@
+/* eslint-disable dot-notation */
 import axios from 'axios'
 
 // create axios instance
-axios.defaults.headers.common['Content-Type'] = 'application/json'
-axios.defaults.headers.common['accesstoken'] = 'SAFEDEFAULT'
 const service = axios.create({
-  baseURL: 'https://kjgxyun-ft.cpic.com.cn',
-  timeout: 5000
+  baseURL: 'http://kjgxyun-ft.cpic.com.cn',
+  timeout: 5000,
+  headers: {
+    common: {
+    }
+  }
 })
+
 // request interceptor
 service.interceptors.request.use(config => {
   // process data before send request
-  // add request time
-  if (config.url.indexOf('?') !== -1) {
+  // add request timeout
+  // config.headers.common['accesstoken'] = 'SAFEDEFAULT'
+  /* if (config.url.indexOf('?') !== -1) {
     config.url += `&t=${new Date().getTime()}`
   } else {
     config.url += `?t=${new Date().getTime()}`
-  }
+  } */
   config.data = JSON.stringify(config.data)
   console.log(config)
   return config

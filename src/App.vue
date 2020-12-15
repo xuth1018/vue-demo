@@ -4,7 +4,9 @@
      |
      <router-link to="/about">About</router-link>
    </div>-->
-  <router-view />
+  <div id="app">
+    <router-view />
+  </div>
 </template>
 
 <style lang="less">

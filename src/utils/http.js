@@ -6,18 +6,20 @@ const service = axios.create({
   // baseURL: 'http://127.0.0.1:8001',
   timeout: 5000,
   headers: {
-    accesstoken: 'SAFEDEFAULT'
+    accesstoken: 'SAFEDEFAULT',
+    'Content-Type': 'application/json'
   }
 })
 
 // request interceptor
 service.interceptors.request.use(config => {
+  console.log(config)
   // process data before send request  add request timeout
-  if (config.url.indexOf('?') !== -1) {
+  /*if (config.url.indexOf('?') !== -1) {
     config.url += `&t=${new Date().getTime()}`
   } else {
     config.url += `?t=${new Date().getTime()}`
-  }
+  }*/
   config.data = JSON.stringify(config.data)
   return config
 }, error => {
